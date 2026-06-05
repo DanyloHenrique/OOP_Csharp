@@ -1,0 +1,14 @@
+/home/danylo/dev/c#/06_OOP_parte2/obj/Debug/net10.0/06_OOP_parte2.GeneratedMSBuildEditorConfig.editorconfig
+/home/danylo/dev/c#/06_OOP_parte2/obj/Debug/net10.0/06_OOP_parte2.AssemblyInfoInputs.cache
+/home/danylo/dev/c#/06_OOP_parte2/obj/Debug/net10.0/06_OOP_parte2.AssemblyInfo.cs
+/home/danylo/dev/c#/06_OOP_parte2/obj/Debug/net10.0/06_OOP_parte2.csproj.CoreCompileInputs.cache
+/home/danylo/dev/c#/06_OOP_parte2/bin/Debug/net10.0/06_OOP_parte2
+/home/danylo/dev/c#/06_OOP_parte2/bin/Debug/net10.0/06_OOP_parte2.deps.json
+/home/danylo/dev/c#/06_OOP_parte2/bin/Debug/net10.0/06_OOP_parte2.runtimeconfig.json
+/home/danylo/dev/c#/06_OOP_parte2/bin/Debug/net10.0/06_OOP_parte2.dll
+/home/danylo/dev/c#/06_OOP_parte2/bin/Debug/net10.0/06_OOP_parte2.pdb
+/home/danylo/dev/c#/06_OOP_parte2/obj/Debug/net10.0/06_OOP_parte2.dll
+/home/danylo/dev/c#/06_OOP_parte2/obj/Debug/net10.0/refint/06_OOP_parte2.dll
+/home/danylo/dev/c#/06_OOP_parte2/obj/Debug/net10.0/06_OOP_parte2.pdb
+/home/danylo/dev/c#/06_OOP_parte2/obj/Debug/net10.0/06_OOP_parte2.genruntimeconfig.cache
+/home/danylo/dev/c#/06_OOP_parte2/obj/Debug/net10.0/ref/06_OOP_parte2.dll
