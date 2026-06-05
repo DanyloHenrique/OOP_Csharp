@@ -12,12 +12,12 @@ namespace ModelCurso;
  em parênteses após o nome do tipo. Um construtor primário indica
   que esses parâmetros são necessários para qualquer instância do tipo.*/
 
-abstract public class Curso(string nome, int cargaHoraria, Turma primeiraTurma)
+abstract public class Curso(string nome, int cargaHoraria)
 {
     public string Nome { get; set; } = nome;
     public int CargaHoraria { get; set; } = cargaHoraria;
     public HashSet<Disciplina> Disciplinas { get; } = [];
-    public List<Turma> Turmas { get; } = [primeiraTurma];
+    public List<Turma> Turmas { get; } = [];
     public HashSet<Aluno> Alunos { get; } = [];
     public HashSet<Professor> Professores {get;} = [];
     public Coordenacao? Coordenador {get; set;}

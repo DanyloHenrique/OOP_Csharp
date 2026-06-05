@@ -7,13 +7,13 @@ public class Turma(string codigoTurma, int capacidadeMaxima, PeriodoCursoEnum pe
 {
     private Curso _Curso = curso;
 
-    public string CodigoTurma {get; set;} = codigoTurma;
-    public int CapacidadeMaxima {get;set;} = capacidadeMaxima;
-    public PeriodoCursoEnum PeriodoCurso {get; set;} = periodoCurso;
-    public TurnoTurmaEnum TurnoTurma {get;set;} = turnoTurma;
-    public Curso Curso {get {return _Curso;}}
+    public string CodigoTurma { get; set; } = codigoTurma;
+    public int CapacidadeMaxima { get; set; } = capacidadeMaxima;
+    public PeriodoCursoEnum PeriodoCurso { get; set; } = periodoCurso;
+    public TurnoTurmaEnum TurnoTurma { get; set; } = turnoTurma;
+    public Curso Curso { get { return _Curso; } }
 
-    public HashSet<Matricula> Matriculas {get; set;} = [];
+    public HashSet<Matricula> Matriculas { get; set; } = [];
 
     public void RegistrarCurso(Curso curso)
     {
@@ -22,15 +22,18 @@ public class Turma(string codigoTurma, int capacidadeMaxima, PeriodoCursoEnum pe
 
     public void RegistrarMatricula(Matricula matricula)
     {
-        if(Matriculas.Count <= CapacidadeMaxima)
+        if (this.Matriculas.Count >= this.CapacidadeMaxima)
         {
-            Matriculas.Add(matricula);
+            throw new Exception("Turma sem vagas disponíveis.");
         }
+        Matriculas.Add(matricula);
+        matricula.Turma = this;
+
     }
 
     public override bool Equals(object? obj)
     {
-        if(obj is Turma t)
+        if (obj is Turma t)
         {
             return this.CodigoTurma.Equals(t.CodigoTurma);
         }
@@ -45,10 +48,10 @@ public class Turma(string codigoTurma, int capacidadeMaxima, PeriodoCursoEnum pe
 
 public enum PeriodoCursoEnum
 {
-Primeiro, Segundo, Terceiro, Quarto, Quinto, Sexto, Setimo, Oitavo
+    Primeiro, Segundo, Terceiro, Quarto, Quinto, Sexto, Setimo, Oitavo
 }
 
 public enum TurnoTurmaEnum
 {
-Matutino = 1, Vespertino = 3, Noturno
+    Matutino = 1, Vespertino = 3, Noturno
 }
