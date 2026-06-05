@@ -14,6 +14,13 @@ public class Professor(string nome, DateTime contratacao)
         Cursos.Add(newCurso);
     }
 
+    public Professor(string nome, DateTime contratacao, Curso curso) : this(nome, contratacao)
+    {
+        this.Nome = nome;
+        this.Contratacao = contratacao;
+        this.Cursos = [curso];
+    } 
+
     public override bool Equals(object? obj)
     {
         return base.Equals(obj);
