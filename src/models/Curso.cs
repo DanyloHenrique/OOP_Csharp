@@ -23,7 +23,7 @@ abstract public class Curso(string nome, int cargaHoraria)
     public Coordenacao? Coordenador {get; set;}
 
     // disciplinas
-    public void RegistrarDisciplina(Disciplina newDisciplina)
+    public virtual void RegistrarDisciplina(Disciplina newDisciplina)
     {
         Disciplinas.Add(newDisciplina);
     }
