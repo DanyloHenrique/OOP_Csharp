@@ -1,4 +1,3 @@
-using System.Data;
 using ModelCurso;
 
 namespace ModelProfessor;
@@ -9,6 +8,11 @@ public class Professor(string nome, DateTime contratacao)
     public DateTime Contratacao { get; set; } = contratacao;
 
     public HashSet<Curso> Cursos { get; } = [];
+
+    public void RegistrarCurso(Curso newCurso)
+    {
+        Cursos.Add(newCurso);
+    }
 
     public override bool Equals(object? obj)
     {

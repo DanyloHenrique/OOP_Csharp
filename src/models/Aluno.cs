@@ -1,19 +1,15 @@
-using System.Security.AccessControl;
 using ModelCurso;
 using ModelMatricula;
 
-namespace ModelDisciplina;
+namespace ModelAluno;
 
-public class Disciplina(string nome, int cargaHoraria, Curso cursoInicial)
-{
+public class Aluno(string nome, Curso cursoInicial)
+{    
     public string Nome { get; set; } = nome;
-    public int CargaHoraria { get; set; } = cargaHoraria;
-
-    public List<Curso> Cursos { get; } = [cursoInicial];
-
+    public List<Curso> Cursos { get; set; } = [cursoInicial];
     public List<Matricula> Matriculas { get; } = [];
 
-    public void RegistrarCurso(Curso newCurso)
+    public void MatricularCurso(Curso newCurso)
     {
         if (!Cursos.Contains(newCurso))
         {
@@ -21,7 +17,7 @@ public class Disciplina(string nome, int cargaHoraria, Curso cursoInicial)
         }
     }
 
-    public void RegistarMatricula(Matricula newMatricula)
+    public void AdicionarMatricula(Matricula newMatricula)
     {
         if (!Matriculas.Contains(newMatricula))
         {
@@ -31,17 +27,15 @@ public class Disciplina(string nome, int cargaHoraria, Curso cursoInicial)
 
     public override bool Equals(object? obj)
     {
-        // Pattern Matching: muito mais limpo e seguro
-        if (obj is Disciplina d)
+        if (obj is Aluno a)
         {
-            return this.Nome.Equals(d.Nome);
+            return this.Nome.Equals(a.Nome);
         }
         return false;
     }
 
     public override int GetHashCode()
     {
-        // Adeus bug de precedência!
         return HashCode.Combine(this.Nome);
     }
 

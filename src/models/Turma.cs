@@ -1,33 +1,46 @@
 using ModelCurso;
+using ModelMatricula;
 
 namespace ModelTurma;
 
-public class Turma
+public class Turma(string codigoTurma, int capacidadeMaxima, PeriodoCursoEnum periodoCurso, TurnoTurmaEnum turnoTurma, Curso curso)
 {
-    private Curso _Curso;
+    private Curso _Curso = curso;
 
-    public string CodigoTurma {get; set;}
-    public PeriodoCursoEnum PeriodoCurso {get; set;}
-    public TurnoTurmaEnum TurnoTurma {get;set;}
-    public Curso Curso {get {return _Curso;} }
+    public string CodigoTurma {get; set;} = codigoTurma;
+    public int CapacidadeMaxima {get;set;} = capacidadeMaxima;
+    public PeriodoCursoEnum PeriodoCurso {get; set;} = periodoCurso;
+    public TurnoTurmaEnum TurnoTurma {get;set;} = turnoTurma;
+    public Curso Curso {get {return _Curso;}}
+
+    public HashSet<Matricula> Matriculas {get; set;} = [];
 
     public void RegistrarCurso(Curso curso)
     {
         this._Curso = curso;
     }
 
+    public void RegistrarMatricula(Matricula matricula)
+    {
+        if(Matriculas.Count <= CapacidadeMaxima)
+        {
+            Matriculas.Add(matricula);
+        }
+    }
+
     public override bool Equals(object? obj)
     {
-        return base.Equals(obj);
+        if(obj is Turma t)
+        {
+            return this.CodigoTurma.Equals(t.CodigoTurma);
+        }
+        return false;
     }
 
     public override int GetHashCode()
     {
-        return base.GetHashCode();
+        return HashCode.Combine(this.CodigoTurma);
     }
-
-
-
 }
 
 public enum PeriodoCursoEnum
