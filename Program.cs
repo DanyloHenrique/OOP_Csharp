@@ -7,48 +7,60 @@ using ModelGraduacao;
 using ModelLatoSensu;
 using ModelStrictoSensu;
 using RepositoryCurso;
+using ModelCurso;
+using ModelTurma;
+using ModelAluno;
+using ModelMatricula;
+using ModelProfessor;
+using ModelCoordenacao;
 
 var endereco = new Endereco(rua: "São Francisco Xavie", numero: "524", bairro: "Maracanã");
+
 var uerj = new Instituicao(nome: "Universidade do Estado do Rio de Janeiro", endereco: endereco);
+Departamento uComp = new Departamento("Computação");
+uerj.RegistrarDepartamento(uComp);
 
-Departamento dptoEnsino = new Departamento("Computação");
+Graduacao cc = new Graduacao("Ciências da Computação", 3200, 8);
+uComp.RegistrarCurso(cc);
+Disciplina ed1 = new Disciplina("Estrutura de Dados 1", 80, cc);
+cc.RegistrarDisciplina(ed1);
 
-// criando cursos de graduacao e pos graduacao (latosensu e strictosensu)
-var graducao = new Graduacao("Ciências da Computação", 3200, 8);
-var latoSensu = new LatoSensu("Sistemas de Computadores", 3200, 300, "Desenvolvimento de Sistemas");
-var strictoSenso = new StrictoSensu("Sistemas Computacionais Para Matemática Ciêntifica", 3200, 200);
+Turma turma01 = new Turma(codigoTurma: "01", capacidadeMaxima: 60, periodoCurso: PeriodoCursoEnum.Primeiro, turnoTurma: TurnoTurmaEnum.Matutino, curso: cc);
+cc.RegistrarTurma(turma01);
 
-// instancia de repositorio
-var repositoryCursos = new RepositorioCurso();
-repositoryCursos.Gravar(graducao);
-repositoryCursos.Gravar(latoSensu);
-repositoryCursos.Gravar(strictoSenso);
+Console.Write($"curso graduacao: {cc.Nome}, que possui as disciplinas: ");
+foreach (var disciplina in cc.Disciplinas)
+{
+    Console.Write(disciplina.Nome);
+}
 
+Console.WriteLine("\nE as turmas: ");
+foreach(var turma in cc.Turmas)
+{
+    Console.Write($"código: {turma.CodigoTurma} - Do {turma.PeriodoCurso} perído e com capacidade de {turma.CapacidadeMaxima} alunos ");
+}
 Console.WriteLine();
-Console.WriteLine("Cursos gravados");
-foreach (var curso in repositoryCursos.ObterTodos())
-{
-    Console.WriteLine($"==> {curso.Nome} ({curso.GetType()})");
-}
+
+Aluno aluno01 = new Aluno("Danylo Henrique", cc);
+cc.RegistrarAluno(aluno01);
 
 
+Matricula matricula01 =  new Matricula(aluno: aluno01, turma: turma01, disciplina: ed1);
+turma01.RegistrarMatricula(matricula01);
+aluno01.AdicionarMatricula(matricula01);
+ed1.RegistarMatricula(matricula01);
 
-graducao.RegistrarDisciplina(new Disciplina("Estrutura de dados 1", 80));
-graducao.RegistrarDisciplina("Orientação a Objetos 1", 60);
-graducao.RegistrarDisciplina("Orientação a Objetos 2", 60);
+Console.WriteLine("==> Matrículas: ");
+Console.WriteLine($"{matricula01.Turma.CodigoTurma}, {matricula01.Aluno.Nome}, {matricula01.Disciplinas.Nome}");
 
 
-Console.WriteLine($"Universidade: {uerj.Nome}");
-Console.WriteLine($"Localizada em: {uerj.Endereco.Rua}, {uerj.Endereco.Numero} - {uerj.Endereco.Bairro}");
+Professor professor01 = new Professor("Junior Henrique", DateTime.UtcNow, cc);
+Professor professor02 = new Professor("pelé Henrique", DateTime.UtcNow, cc);
+Coordenacao coordenador01 = new Coordenacao(professor01, DateTime.UtcNow, cc);
+cc.RegistrarProfessor(professor01);
+cc.RegistrarProfessor(professor02);
 
-Console.WriteLine($"== Cursos no departamento de {dptoEnsino.Nome} ==");
-foreach (var curso in dptoEnsino.Cursos)
-{
-    Console.WriteLine($"==> {curso.Nome} - {curso.CargaHoraria}h");
-}
 
-// Console.WriteLine($"O curso {cursoCC.Nome} possui {cursoCC.Disciplinas.Count} disciplinas:");
-// foreach (var d in cursoCC.Disciplinas)
-// {
-//     Console.WriteLine($"==> {d.Nome} ({d.CargaHoraria})");
-// }
+Console.WriteLine($"Professor do curso {cc}: ");
+foreach(var professor in cc.Professores)
+    Console.WriteLine($"{professor.Nome} - data de contratação: {professor.Contratacao}");
